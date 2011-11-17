@@ -1,5 +1,13 @@
-use 5.14.0;
+use 5.10.0;
 use warnings;
+
+# Replace these with the values from:
+#   http://www.h2oscore.com/user/me/oauth/consumers
+use constant {
+    CONSUMER_KEY         => 'xxx',
+    CONSUMER_SECRET      => 'xxx',
+    COSUMER_CALLBACK_URL => 'http://example.com/oauth/callback',
+};
 
 use OAuth::Lite::Consumer;
 use JSON;
@@ -7,10 +15,10 @@ use Flea;
 use Plack::Builder;
 
 my $consumer = OAuth::Lite::Consumer->new(
-    consumer_key       => 'is4vQoaFYBFT8hL3TKsqWK4v2hXHjGP2',
-    consumer_secret    => 'ALjshvGHSiegPDgFY9eesrmdsRnWb8XN',
-    site               => 'http://beta.h2oscore.com',
-    realm              => 'http://beta.h2oscore.com',
+    consumer_key       => CONSUMER_KEY,
+    consumer_secret    => CONSUMER_SECRET,
+    site               => 'http://www.h2oscore.com',
+    realm              => 'http://www.h2oscore.com',
     request_token_path => '/oauth/request_token',
     access_token_path  => '/oauth/access_token',
     authorize_path     => '/oauth/authorize',
@@ -52,7 +60,7 @@ builder {
             }
             my $res = $consumer->request(
                 method => 'GET',
-                url    => 'http://beta.h2oscore.com/api/v1/address',
+                url    => 'http://www.h2oscore.com/api/v1/address',
                 params => { limit => 1, 'parameters[owned_by]' => 'me' },
                 token  => $token,
             );
@@ -74,7 +82,7 @@ builder {
             my $req   = request(shift);
             my $ses   = $req->session;
             my $rt = $ses->{request_token} = $consumer->get_request_token(
-                callback_url => uri($req, '/oauth/callback')->as_string,
+                callback_url => CALLBACK_URL,
             ) or die $consumer->errstr;
             my $auth_url = $consumer->url_to_authorize(token => $rt)
                 or die $consumer->errstr;
