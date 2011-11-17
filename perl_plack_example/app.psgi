@@ -1,5 +1,6 @@
 use 5.10.0;
 use warnings;
+use strict;
 
 # Replace these with the values from:
 #   http://www.h2oscore.com/user/me/oauth/consumers
