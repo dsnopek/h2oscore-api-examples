@@ -4,9 +4,8 @@ use warnings;
 # Replace these with the values from:
 #   http://www.h2oscore.com/user/me/oauth/consumers
 use constant {
-    CONSUMER_KEY         => 'xxx',
-    CONSUMER_SECRET      => 'xxx',
-    COSUMER_CALLBACK_URL => 'http://example.com/oauth/callback',
+    CONSUMER_KEY          => 'xxx',
+    CONSUMER_SECRET       => 'xxx',
 };
 
 use OAuth::Lite::Consumer;
@@ -82,7 +81,7 @@ builder {
             my $req   = request(shift);
             my $ses   = $req->session;
             my $rt = $ses->{request_token} = $consumer->get_request_token(
-                callback_url => CALLBACK_URL,
+                callback_url => uri($req, '/oauth/callback')->as_string,
             ) or die $consumer->errstr;
             my $auth_url = $consumer->url_to_authorize(token => $rt)
                 or die $consumer->errstr;
