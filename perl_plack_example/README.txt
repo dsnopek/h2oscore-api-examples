@@ -4,12 +4,12 @@
 
  2. Install dependencies:
 
-	  # If you don't have 'cpanm' check out the 'cpanminus' instructions below.
+      # If you don't have 'cpanm' check out the 'cpanminus' instructions below.
       cpanm --sudo Plack Plack::Middleware::Session OAuth::Lite JSON Flea
 
-	  # OR if you're brave, you can do it with cpan but it will ask you a
-	  # lot of questions.  Choose the default whenever asked by simply
-	  # pressing enter.
+      # OR if you're brave, you can do it with cpan but it will ask you a
+      # lot of questions.  Choose the default whenever asked by simply
+      # pressing enter.
       sudo cpan -i Plack Plack::Middleware::Session OAuth::Lite JSON Flea
 
  3. Run the example with this command:
