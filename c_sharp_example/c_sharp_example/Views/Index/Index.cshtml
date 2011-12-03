@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "H2OScore.com - C# example";
+}
+
+<h2>H2OScore.com - C# example</h2>
+@if (ViewBag.user != null) {
+    <h3>User information</h3>
+    <p>User Id: @ViewBag.user.uid</p>
+    <p>Name: @ViewBag.user.name</p>
+    <p>E-Mail: @ViewBag.user.mail</p>
+    
+    <h3>Address</h3>
+    <p>@ViewBag.address.street</p>
+    <p>@ViewBag.address.city, @ViewBag.address.province @ViewBag.address.postal_code</p>
+    
+    <h3>Most recent score</h3>
+    <p>Percentile: @ViewBag.score.percentile</p>
+    <p>Gallons per day: @ViewBag.score.gallons_per_day</p>
+} else {    
+<p>
+    <a href="/index/login">Click here</a> to login using your H2OScore.com account.
+</p>
+}
